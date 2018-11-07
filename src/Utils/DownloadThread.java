@@ -16,6 +16,7 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.remote.UnreachableBrowserException;
 
@@ -26,6 +27,7 @@ public class DownloadThread extends Thread {
 	static boolean keepGoing;
 	FirefoxProfile profile;
 	FirefoxDriver driver;
+	FirefoxOptions option;
 
 	public DownloadThread() {
 
@@ -48,15 +50,15 @@ public class DownloadThread extends Thread {
 
 		File file = new File("adblock_plus-2.7.3-sm+tb+fx+an.xpi");
 
-		try {
-			profile.addExtension(file);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		profile.addExtension(file);
 		profile.setPreference("extensions.firebug.currentVersion", "1.8.1");
 
-		driver = new FirefoxDriver(profile);
+		System.setProperty("webdriver.gecko.driver", "D:\\Softwares\\geckodriver.exe");
+		FirefoxProfile profile =new FirefoxProfile(new File("C:\\Users\\ramvi\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\6p4jat9o.default"));
+		option=new FirefoxOptions();
+		option.setProfile(profile);
+		
+		driver = new FirefoxDriver(option);
 
 		keepGoing = true;
 	}
@@ -68,7 +70,7 @@ public class DownloadThread extends Thread {
 		while (keepGoing && packagename != null) {
 
 			if (driver == null) {
-				driver = new FirefoxDriver(profile);
+				driver = new FirefoxDriver(option);
 				ErrorLogger.writeError(
 						"Nieuwe driver moeten maken - mag normaal niet... timestamp: " + System.currentTimeMillis());
 			}
@@ -157,7 +159,7 @@ public class DownloadThread extends Thread {
 					driver.quit();
 				} catch (Exception eee) {
 				}
-				driver = new FirefoxDriver(profile);
+				driver = new FirefoxDriver(option);
 				ErrorLogger.writeError(
 						"Nieuwe driver moeten maken - UnreachableBrowserException: " + System.currentTimeMillis());
 			} catch (Exception e) {

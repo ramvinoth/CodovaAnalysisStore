@@ -15,10 +15,10 @@ public class AndroidMarket {
 	
 	public AndroidMarket() {
 
-		session = new MarketSession(true);
+		session = new MarketSession(false);
 		session.setAuthSubToken(Configs.ma_authToken);
 		session.setAndroidId(Configs.ma_androidID);
-		//session.setIsSecure(true);
+		session.setIsSecure(false);
 		
 
 	}

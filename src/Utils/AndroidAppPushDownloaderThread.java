@@ -10,6 +10,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriverService;
@@ -22,12 +23,13 @@ import net.anthavio.phanbedder.Phanbedder;
 
 public class AndroidAppPushDownloaderThread extends Thread {
 
-	static final String username = "<FILL IN EMAIL ADRESS>";
-	static final String password = "<FILL IN PASSWORD>";
+	static final String username = "<fill_your_email_id>";
+	static final String password = "<fill_your_password>";
 	boolean keepGoing;
 	FirefoxDriver driver;
 	DesiredCapabilities dcaps;
 	FirefoxProfile profile;
+	FirefoxOptions option;
 
 	public AndroidAppPushDownloaderThread() {
 		
@@ -52,16 +54,16 @@ public class AndroidAppPushDownloaderThread extends Thread {
 
 		File file = new File("adblock_plus-2.7.3-sm+tb+fx+an.xpi");
 
-		try {
-			profile.addExtension(file);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		profile.addExtension(file);
 		profile.setPreference("extensions.firebug.currentVersion", "1.8.1");
 		
+		System.setProperty("webdriver.gecko.driver", "D:\\Softwares\\geckodriver.exe");
+		FirefoxProfile profile =new FirefoxProfile(new File("C:\\Users\\ramvi\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\6p4jat9o.default"));
+		option=new FirefoxOptions();
+		option.setProfile(profile);
+		
 		keepGoing = true;
-		driver = new FirefoxDriver(profile);
+		driver = new FirefoxDriver(option);
 	}
 
 	@Override
@@ -131,7 +133,7 @@ public class AndroidAppPushDownloaderThread extends Thread {
 		// TODO
 		driver.get("https://play.google.com/store/apps/details?id=com.viber.voip");
 	
-		WebElement loginKnop = driver.findElement(By.cssSelector(".gb_Je.gb_Ha.gb_rb"));
+		WebElement loginKnop = driver.findElement(By.cssSelector(".gb_Ae.gb_Aa.gb_Fb"));
 		
 		System.out.println(loginKnop.getAttribute("innerHTML"));
 		loginKnop.click();
@@ -142,13 +144,14 @@ public class AndroidAppPushDownloaderThread extends Thread {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		try {
 		// fill in username
-		WebElement usernameField = driver.findElement(By.cssSelector(".input-wrapper.focused"))
-				.findElement(By.id("Email"));
+		WebElement usernameField = driver.findElement(By.cssSelector(".aXBtI.Wic03c"))
+				.findElement(By.id("identifierId"));
 		usernameField.sendKeys(username);
 
 		// press next
-		WebElement nextButton = driver.findElement(By.cssSelector(".rc-button.rc-button-submit"));
+		WebElement nextButton = driver.findElement(By.cssSelector("identifierNext"));
 		nextButton.click();
 		try {
 			Thread.sleep(2000);
@@ -156,12 +159,14 @@ public class AndroidAppPushDownloaderThread extends Thread {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		}catch(Exception e) {
+			
+		}
 		// fill in password
-		WebElement passwordField = driver.findElement(By.id("password-shown")).findElement(By.id("Passwd"));
+		WebElement passwordField = driver.findElement(By.cssSelector(".aXBtI.I0VJ4d.Wic03c")).findElement(By.cssSelector(".whsOnd.zHQkBf"));
 		passwordField.sendKeys(password);
 
-		WebElement loginButton = driver.findElement(By.id("signIn"));
+		WebElement loginButton = driver.findElement(By.id("passwordNext"));
 		loginButton.click();
 		try {
 			Thread.sleep(2000);
@@ -176,15 +181,15 @@ public class AndroidAppPushDownloaderThread extends Thread {
 	public void downloadAppViaPush(String packageName) {
 
 		if (driver == null) {
-			driver = new FirefoxDriver(profile);
+			driver = new FirefoxDriver(option);
 			loginToPlayStore();
 		}
-
+		System.out.println("Package : "+packageName);
 		try {
 			driver.get("https://play.google.com/store/apps/details?id=" + packageName);
 
 			WebElement installButton = driver.findElement(
-					By.cssSelector(".apps.large.play-button.buy-button-container.is_not_aquired_or_preordered"));
+					By.cssSelector(".LkLjZd.ScJHi.HPiPcc.IfEcue"));
 			
 			
 			installButton.click();
@@ -297,7 +302,7 @@ public class AndroidAppPushDownloaderThread extends Thread {
 				driver.quit();
 			} catch (Exception eee) {
 			}
-			driver = new FirefoxDriver(profile);
+			driver = new FirefoxDriver(option);
 			ErrorLogger.writeError(
 					"(ALTDL)Nieuwe driver moeten maken - UnreachableBrowserException: " + System.currentTimeMillis());
 			loginToPlayStore();

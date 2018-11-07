@@ -1,9 +1,12 @@
 package controllers;
 
+import AppAnalyzer.Configs;
 import GUI.GeneralOverviewThread;
 import GUI.TableHelper;
+import PhoneGapUtils.PhoneGapAnalyzerUtils;
 import Utils.AndroidMarket;
 import Utils.AppAnalyzerUtils;
+import Utils.DBUtils;
 import Utils.DownloadUtils;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -133,6 +136,7 @@ public class MainController {
 
 	public void crawlerStartAction() {
 		System.out.println("crawler started");
+		DBUtils.fillKeywordsFromFile(Configs.keyword_path);
 		crawlerCurrentActionLabel.setText("starting crawler...");
 		if (androidMarket == null) {
 			androidMarket = new AndroidMarket();
@@ -179,6 +183,16 @@ public class MainController {
 	}
 
 	public void downloaderStartAction() {
+		
+		DBUtils.dropTable(Configs.table_phonegap_analysis);
+		DBUtils.dropTable(Configs.table_plugins_phonegap);
+		DBUtils.createTablesIfNeeded();
+		PhoneGapAnalyzerUtils.populateDedicatedPhoneGapTable();
+		
+		//System.out.println(DBUtils.getAllPlugins());
+		
+		//DBUtils.createTablesIfNeeded();
+		
 		System.out.println("downloader started");
 		downloaderCurrentActionLabel.setText("starting downloader...");
 		if (downloadUtils == null) {

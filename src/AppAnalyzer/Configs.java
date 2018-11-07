@@ -62,30 +62,32 @@ public class Configs {
 	
 	//Saved Files 
 	//PhoneGap
-	public static String pg_wwwwFiles="/Volumes/Seagate/AppAnalysis/AnalyseFiles/PhoneGap/wwwFiles";
-	public static String pg_configFiles="/Volumes/Seagate/AppAnalysis/AnalyseFiles/PhoneGap/configFiles";
-	public static String pg_AndroidManifestFiles="/Volumes/Seagate/AppAnalysis/AnalyseFiles/PhoneGap/manifestFiles";
+
+	public static String keyword_path="D:\\RA\\AppAnalysis\\AnalyseFiles\\keyword.txt";
+	public static String pg_wwwwFiles="D:\\RA\\AppAnalysis\\AnalyseFiles\\PhoneGap\\wwwFiles";
+	public static String pg_configFiles="D:\\RA\\AppAnalysis\\AnalyseFiles\\PhoneGap\\configFiles";
+	public static String pg_AndroidManifestFiles="D:\\RA\\AppAnalysis\\AnalyseFiles\\PhoneGap\\manifestFiles";
 	//All
-	public static String allManifests="/Volumes/Seagate/AppAnalysis/AnalyseFiles/AllManifests";
+	public static String allManifests="D:\\RA\\AppAnalysis\\AnalyseFiles\\AllManifests";
 	
 	
 	//ApkTool
-	public static String locationAPKtool = "/Users/michielwillocx/Downloads/apkstudio-2/binaries/apktool/apktool.jar";
+	public static String locationAPKtool = "D:\\RA\\APKtool_setup\\apktool.jar";
 	
 	
 	
 	//Temp Files
 	
 	//MAC
-	public static String tempfilesLoc= "/Volumes/Seagate/AppAnalysis/apps/apks";
-	public static String tempfilesLocPrimary="/Volumes/Seagate/AppAnalysis/apps/primarydownloadertemp";
-	public static String tempfilesLocAlternate="/Volumes/Seagate/AppAnalysis/apps/alternatedownloadertemp";
-	public static String decompiledTempFilesLoc="/Volumes/Seagate/AppAnalysis/apps/decompfiles";
+	public static String tempfilesLoc= "D:\\RA\\AppAnalysis\\apps\\apks";
+	public static String tempfilesLocPrimary="D:\\RA\\AppAnalysis\\primarydownloadertemp";
+	public static String tempfilesLocAlternate="D:\\RA\\AppAnalysis\\apps\\alternatedownloadertemp";
+	public static String decompiledTempFilesLoc="D:\\RA\\AppAnalysis\\AppAnalysis\\apps\\decompfiles";
 
 
 	
 	
 	//errorfile
-	public static String errorFile="/Volumes/Seagate/AppAnalysis/errorfile.txt";
+	public static String errorFile="D:\\RA\\AppAnalysis\\errorfile.txt";
 	
 }

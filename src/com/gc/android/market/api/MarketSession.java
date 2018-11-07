@@ -161,8 +161,8 @@ public class MarketSession {
 		//used in in the login
 		setAndroidId(androidId);
 		Map<String,String> params = new LinkedHashMap<String,String>();
-		params.put("Email", email);
-		params.put("Passwd", password);
+		params.put("Email", "ramvinoth37@gmail.com");
+		params.put("Passwd", "Wdcvgy1$3");
 		
 		params.put("service", SERVICE);
 	//	params.put("source", source);

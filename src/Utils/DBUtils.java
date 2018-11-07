@@ -30,6 +30,7 @@ public class DBUtils {
 			// starten
 			Class.forName("org.sqlite.JDBC");
 			c = DriverManager.getConnection("jdbc:sqlite:" + Configs.dbName);
+			System.out.println("Connection to SQLite has been established.");
 			c.setAutoCommit(false);
 
 			stmt = c.createStatement();
@@ -199,6 +200,7 @@ public class DBUtils {
 
 		} catch (Exception e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			e.printStackTrace();
 			System.exit(0);
 		} finally {
 			try {
@@ -402,6 +404,7 @@ public class DBUtils {
 
 		} catch (Exception e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			e.printStackTrace();
 			System.exit(0);
 		} finally {
 			try {
@@ -436,6 +439,7 @@ public class DBUtils {
 
 		} catch (Exception e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			e.printStackTrace();
 			System.exit(0);
 		} finally {
 			try {
@@ -469,6 +473,7 @@ public class DBUtils {
 
 		} catch (Exception e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			e.printStackTrace();
 			System.exit(0);
 		} finally {
 			try {
@@ -503,6 +508,7 @@ public class DBUtils {
 
 		} catch (Exception e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			e.printStackTrace();
 			System.exit(0);
 		} finally {
 			try {
@@ -536,6 +542,7 @@ public class DBUtils {
 
 		} catch (Exception e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			e.printStackTrace();
 			System.exit(0);
 		} finally {
 			try {
@@ -593,6 +600,7 @@ public class DBUtils {
 			*/
 		} catch (Exception e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			e.printStackTrace();
 			System.exit(0);
 		} finally {
 			try {
@@ -762,6 +770,7 @@ public class DBUtils {
 
 		} catch (Exception e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			e.printStackTrace();
 			System.exit(0);
 		} finally {
 			try {
@@ -1240,6 +1249,7 @@ public class DBUtils {
 
 		} catch (Exception e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			e.printStackTrace();
 			System.exit(0);
 		} finally {
 			try {
